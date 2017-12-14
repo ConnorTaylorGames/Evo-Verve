@@ -6,6 +6,7 @@ public class Generator : MonoBehaviour
 {
 
     // Adjustable variables for Unity Inspector
+    [SerializeField]
     int Seed;
 
     // Adjustable variables for Unity Inspector
@@ -65,21 +66,6 @@ public class Generator : MonoBehaviour
     [SerializeField]
     float WettestValue = 0.9f;
 
-    [Header("Rivers")]
-    [SerializeField]
-    int RiverCount = 40;
-    [SerializeField]
-    float MinRiverHeight = 0.6f;
-    [SerializeField]
-    int MaxRiverAttempts = 1000;
-    [SerializeField]
-    int MinRiverTurns = 18;
-    [SerializeField]
-    int MinRiverLength = 20;
-    [SerializeField]
-    int MaxRiverIntersections = 2;
-
-
     // private variables
     ImplicitFractal HeightMap;
     ImplicitCombiner HeatMap;
@@ -95,9 +81,20 @@ public class Generator : MonoBehaviour
     List<TileGroup> Lands = new List<TileGroup>();
 
     // Our texture output gameobject
-    MeshRenderer HeightMapRenderer;
-    MeshRenderer HeatMapRenderer;
-    MeshRenderer MoistureMapRenderer;
+    protected MeshRenderer HeightMapRenderer;
+    protected MeshRenderer HeatMapRenderer;
+    protected MeshRenderer MoistureMapRenderer;
+    protected MeshRenderer BiomeMapRenderer;
+
+    protected BiomeType[,] BiomeTable = new BiomeType[6, 6] {   
+		//COLDEST        //COLDER          //COLD                  //HOT                          //HOTTER                       //HOTTEST
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.Grassland,    BiomeType.Desert,              BiomeType.Desert,              BiomeType.Desert },              //DRYEST
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.Grassland,    BiomeType.Desert,              BiomeType.Desert,              BiomeType.Desert },              //DRYER
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.Woodland,     BiomeType.Woodland,            BiomeType.Savanna,             BiomeType.Savanna },             //DRY
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.BorealForest, BiomeType.Woodland,            BiomeType.Savanna,             BiomeType.Savanna },             //WET
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.BorealForest, BiomeType.SeasonalForest,      BiomeType.TropicalRainforest,  BiomeType.TropicalRainforest },  //WETTER
+		{ BiomeType.Ice, BiomeType.Tundra, BiomeType.BorealForest, BiomeType.TemperateRainforest, BiomeType.TropicalRainforest,  BiomeType.TropicalRainforest }   //WETTEST
+	};
 
 
     void Start()
@@ -107,6 +104,7 @@ public class Generator : MonoBehaviour
         HeightMapRenderer = transform.Find("HeightTexture").GetComponent<MeshRenderer>();
         HeatMapRenderer = transform.Find ("HeatTexture").GetComponent<MeshRenderer> ();
         MoistureMapRenderer = transform.Find("MoistureTexture").GetComponent<MeshRenderer>();
+        BiomeMapRenderer = transform.Find("BiomeTexture").GetComponent<MeshRenderer>();
 
 
         Initialize();
@@ -114,12 +112,19 @@ public class Generator : MonoBehaviour
         LoadTiles();
 
         UpdateNeighbors();
-        UpdateBitmasks();
+        //Uncomment if you want bitmasks shown
+        //UpdateBitmasks();
         FloodFill();
+
+        GenerateBiomeMap();
+        //Uncomment if you want bitmasks shown
+        //UpdateBiomeBitmask();
+
 
         HeightMapRenderer.materials[0].mainTexture = TextureGenerator.GetHeightMapTexture(Width, Height, Tiles);
         HeatMapRenderer.materials[0].mainTexture = TextureGenerator.GetHeatMapTexture(Width, Height, Tiles);
         MoistureMapRenderer.materials[0].mainTexture = TextureGenerator.GetMoistureMapTexture(Width, Height, Tiles);
+        BiomeMapRenderer.materials[0].mainTexture = TextureGenerator.GetBiomeMapTexture(Width, Height, Tiles, ColdestValue, ColderValue, ColdValue);
 
     }
 
@@ -131,17 +136,47 @@ public class Generator : MonoBehaviour
             Initialize();
             GetData();
             LoadTiles();
-            //UpdateBitmasks();
             UpdateNeighbors();
             FloodFill();
 
             HeightMapRenderer.materials[0].mainTexture = TextureGenerator.GetHeightMapTexture(Width, Height, Tiles);
             HeatMapRenderer.materials[0].mainTexture = TextureGenerator.GetHeatMapTexture(Width, Height, Tiles);
             MoistureMapRenderer.materials[0].mainTexture = TextureGenerator.GetMoistureMapTexture(Width, Height, Tiles);
+            BiomeMapRenderer.materials[0].mainTexture = TextureGenerator.GetBiomeMapTexture(Width, Height, Tiles, ColdestValue, ColderValue, ColdValue);
 
         }
     }
 
+    public BiomeType GetBiomeType(Tile tile)
+    {
+        return BiomeTable[(int)tile.MoistureType, (int)tile.HeatType];
+    }
+
+    private void GenerateBiomeMap()
+    {
+        for (var x = 0; x < Width; x++)
+        {
+            for (var y = 0; y < Height; y++)
+            {
+
+                if (!Tiles[x, y].Collidable) continue;
+
+                Tile t = Tiles[x, y];
+                t.BiomeType = GetBiomeType(t);
+            }
+        }
+    }
+
+    private void UpdateBiomeBitmask()
+    {
+        for (var x = 0; x < Width; x++)
+        {
+            for (var y = 0; y < Height; y++)
+            {
+                Tiles[x, y].UpdateBiomeBitmask();
+            }
+        }
+    }
 
     private void Initialize()
     {

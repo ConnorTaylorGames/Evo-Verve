@@ -56,13 +56,17 @@ public class Tile
     public HeightType HeightType;
     public HeatType HeatType;
     public MoistureType MoistureType;
+    public BiomeType BiomeType;
 
     public float HeightValue { get; set; }
     public float HeatValue { get; set; }
     public float MoistureValue { get; set; }
+    public float BiomeValue { get; set; }
+
 
     public int X, Y;
     public int Bitmask;
+    public int BiomeBitmask;
 
     public Tile Left;
     public Tile Right;
@@ -74,6 +78,22 @@ public class Tile
 
     public Tile()
     {
+    }
+
+    public void UpdateBiomeBitmask()
+    {
+        int count = 0;
+
+        if (Collidable && Top != null && Top.BiomeType == BiomeType)
+            count += 1;
+        if (Collidable && Bottom != null && Bottom.BiomeType == BiomeType)
+            count += 4;
+        if (Collidable && Left != null && Left.BiomeType == BiomeType)
+            count += 8;
+        if (Collidable && Right != null && Right.BiomeType == BiomeType)
+            count += 2;
+
+        BiomeBitmask = count;
     }
 
     public void UpdateBitmask()
