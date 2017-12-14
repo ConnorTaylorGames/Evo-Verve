@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44862777, g: 0.49868083, b: 0.5756711, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -192,10 +192,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 102851036}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &170067285 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: ee6535f71428504449546c25c0673573, type: 3}
-  m_PrefabInternal: {fileID: 1950517603}
 --- !u!1 &392614390
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +281,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &392614396
 MonoBehaviour:
@@ -298,14 +294,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f573764449e20848b0d3e61a71c1e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 170067285}
-  distance: 50
+  target: {fileID: 1256900750}
+  distance: 100
   xSpeed: 0.02
   ySpeed: 0.5
   yMinLimit: -360
   yMaxLimit: 360
-  distanceMin: 25
-  distanceMax: 100
+  distanceMin: 50
+  distanceMax: 200
   smoothTime: 3
   perspectiveZoomSpeed: 0.1
 --- !u!45 &392614397
@@ -763,13 +759,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1053583755}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.33716685, y: 0.39609933, z: -0.15916012, w: 0.83910185}
+  m_LocalPosition: {x: -9.39, y: 3, z: -28.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 43.782, y: 50.539, z: 0}
 --- !u!1 &1256900746
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +797,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 07d49b007f2806942b30f5275093beec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1015,7 +1011,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ee6535f71428504449546c25c0673573, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ee6535f71428504449546c25c0673573, type: 3}
       propertyPath: m_Materials.Array.data[0]

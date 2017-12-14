@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LibNoise;
+using LibNoise.Generator;
+using LibNoise.Operator;
 
 public class GenerateCubeSphere : MonoBehaviour {
 
-    private float radius = 1.0f;
+    private float radius = 20.0f;
     public GameObject cubeObject;
 
 	// Use this for initialization
@@ -16,7 +19,7 @@ public class GenerateCubeSphere : MonoBehaviour {
     void Generate()
     {
 
-        float perlin = Mathf.PerlinNoise(128f, 128f);
+        Perlin noise = new Perlin();
         Vector3[] baseVertices = null;
         Mesh mesh = cubeObject.GetComponent<MeshFilter>().mesh;
 
@@ -28,8 +31,10 @@ public class GenerateCubeSphere : MonoBehaviour {
             for (int i = 0; i < vertices.Length; i++)
             {
                 Vector3 vertex = baseVertices[i];
-                vertex = vertex.normalized * (radius + Mathf.PerlinNoise(vertex.x * 1.8f, vertex.y * 1.8f) * 1.1f);
+                Vector3 pos = vertex.normalized * radius;
+                vertex = vertex.normalized * (float)(radius + noise.GetValue(pos.x, pos.y, pos.z) * 2f);
                 vertices[i] = vertex;
+
             }
 
             mesh.vertices = vertices;
