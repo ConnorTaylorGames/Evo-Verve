@@ -17,7 +17,7 @@ public class SunMoveScript : MonoBehaviour
     {
         if (planet)
         {
-            transform.RotateAround(planet.transform.position, Vector3.up, 15 * Time.deltaTime);
+            transform.RotateAround(planet.transform.position, Vector3.up, 5 * Time.deltaTime);
             transform.LookAt(planet.transform);
         }
         else
