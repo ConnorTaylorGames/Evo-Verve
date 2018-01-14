@@ -10,7 +10,6 @@ namespace EvoVerve.Credits
         private int credits;
         public int Credits { get { return credits; } set { credits = value; } }
 
-
         private void OnEnable()
         {
             ClickerManager.Tapped += IncrementCredits;

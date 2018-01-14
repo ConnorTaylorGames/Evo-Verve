@@ -21,6 +21,13 @@ namespace EvoVerve.Clicker
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (Tapped != null)
+                {
+                    Tapped();
+                }
+            }
             //Check if tap
             if (Input.touchCount == 1)
             {

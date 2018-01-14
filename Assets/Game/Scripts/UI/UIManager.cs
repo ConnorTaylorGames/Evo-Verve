@@ -20,14 +20,19 @@ namespace EvoVerve.Ui
             creditManager = GameObject.Find("CreditManager");
         }
 
+
+
         private void OnEnable()
         {
             ClickerManager.Tapped += UpdateCreditDisplay;
+            GameManager.Loaded += UpdateCreditDisplay;
         }
 
         private void OnDisable()
         {
             ClickerManager.Tapped -= UpdateCreditDisplay;
+            GameManager.Loaded -= UpdateCreditDisplay;
+
         }
 
 
