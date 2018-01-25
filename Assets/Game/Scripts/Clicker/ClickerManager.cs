@@ -8,46 +8,49 @@ namespace EvoVerve.Clicker
 {
     public class ClickerManager : MonoBehaviour
     {
-        public delegate void TapAction();
+        public delegate void TapAction(int creditIncreaseAmount);
         public static event TapAction Tapped;
+
 
         private bool touching;
 
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Application.platform == RuntimePlatform.WindowsEditor)
             {
-                if (Tapped != null)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    Tapped();
-                }
-            }
-            //Check if tap
-            if (Input.touchCount == 1)
-            {
-                //Check if tap was X seconds ago to stop cheating
-                if (touching == false)
-                {
-                    //Call Tap event
                     if (Tapped != null)
                     {
-                        Tapped();
+                        Tapped(1);
                     }
-
-                    touching = true;
                 }
             }
-            else if (Input.touchCount == 0)
+            else if (Application.platform == RuntimePlatform.Android)
             {
-                touching = false;
+
+                //Check if tap
+                if (Input.touchCount == 1)
+                {
+                    //Check if tap was X seconds ago to stop cheating
+                    if (touching == false)
+                    {
+                        //Call Tap event
+                        if (Tapped != null)
+                        {
+                            Tapped(1);
+                        }
+
+                        touching = true;
+                    }
+                }
+                else if (Input.touchCount == 0)
+                {
+                    touching = false;
+                }
             }
 
         }
+
     }
 }

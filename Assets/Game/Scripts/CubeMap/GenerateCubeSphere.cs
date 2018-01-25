@@ -11,7 +11,8 @@ public class GenerateCubeSphere : MonoBehaviour
     private float radius = 30.0f;
     public GameObject cubeObject;
 
-    public int resolution = 32;
+    public int resolutionx = 32;
+    public int resolutiony = 32;
 
     private Texture2D texture;
 
@@ -82,7 +83,6 @@ public class GenerateCubeSphere : MonoBehaviour
 
 
         // - Terrain Type
-
         //Generate Perlin Noise
         Perlin noise = new Perlin();
 
@@ -103,7 +103,7 @@ public class GenerateCubeSphere : MonoBehaviour
         Select terrainSelector = new Select(flatTerrain, mountainTerrain, noise); // input A, input B, Controller
 
 
-        terrainSelector.SetBounds(0.0, 1000.0);
+        terrainSelector.SetBounds(0.0, 100.0);
 
         terrainSelector.FallOff = terrainSelectorEdgeFalloff;
 
@@ -121,18 +121,22 @@ public class GenerateCubeSphere : MonoBehaviour
         // ------------------------------------------------------------------------------------------
 
 
+        //Store Sphere Mesh
         Mesh mesh = cubeObject.GetComponent<MeshFilter>().mesh;
-
-
 
         // - Compiled Terrain -
         //Create ModuleBase
         ModuleBase myModule = finalTerrain;
+
         Noise2D heightMap;
 
-       // heightMap = new Noise2D(resolution, resolution, myModule);
-      //  heightMap.GenerateSpherical(south, north, west, east);
-       // texture = heightMap.GetTexture(GradientPresets.Terrain);
+        heightMap = new Noise2D(resolutionx, resolutiony, myModule);
+        heightMap.GenerateSpherical(south, north, west, east);
+        texture = heightMap.GetTexture(GradientPresets.Terrain2);
+
+        texture.filterMode = FilterMode.Point;
+        cubeObject.GetComponent<MeshRenderer>().material.mainTexture = texture;
+
 
         // ------------------------------------------------------------------------------------------
 
@@ -147,11 +151,12 @@ public class GenerateCubeSphere : MonoBehaviour
             {
                 Vector3 vertex = baseVertices[i];
                 Vector3 pos = vertex.normalized * radius;
-                vertex = vertex.normalized * (float)(radius + myModule.GetValue(pos.x, pos.y, pos.z) * 2.0f);
-                Debug.Log(myModule.GetValue(pos.x, pos.y, pos.z));
-
+                //vertex = vertex.normalized * (float)(radius + myModule.GetValue(pos.x, pos.y, pos.z) * 2.0f);
+                vertex = vertex.normalized * (float)(radius + heightMap.Height);
 
                 vertices[i] = vertex;
+               
+                Debug.Log(myModule.GetValue(pos.x, pos.y, pos.z));
 
             }
 
@@ -160,21 +165,15 @@ public class GenerateCubeSphere : MonoBehaviour
             mesh.RecalculateBounds();
             DestroyImmediate(cubeObject.GetComponent<Collider>());
             cubeObject.AddComponent<MeshCollider>();
-
-
-            heightMap = new Noise2D(resolution, resolution, myModule);
-            heightMap.GenerateSpherical(south, north, west, east);
-            texture = heightMap.GetTexture(GradientPresets.Terrain);
-
-            texture.filterMode = FilterMode.Point;
-            cubeObject.GetComponent<MeshRenderer>().material.mainTexture = texture;
             texture.Apply();
 
         }
 
 
+
         DestroyImmediate(cubeObject.GetComponent<Collider>());
         cubeObject.AddComponent<MeshCollider>();
+
     }
 
     void SetSeed()

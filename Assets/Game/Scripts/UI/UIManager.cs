@@ -35,13 +35,15 @@ namespace EvoVerve.Ui
 
         private void OnEnable()
         {
-            ClickerManager.Tapped += UpdateCreditDisplay;
+            CreditManager.UpdateUI += UpdateCreditDisplay;
+            //ClickerManager.TappedUI += UpdateCreditDisplay;
             GameManager.Loaded += UpdateCreditDisplay;
         }
 
         private void OnDisable()
         {
-            ClickerManager.Tapped -= UpdateCreditDisplay;
+            CreditManager.UpdateUI -= UpdateCreditDisplay;
+            //ClickerManager.TappedUI -= UpdateCreditDisplay;
             GameManager.Loaded -= UpdateCreditDisplay;
 
         }

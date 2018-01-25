@@ -28,10 +28,10 @@ public class CameraController : MonoBehaviour {
         {
             float pointer_x = Input.GetAxis("Mouse X");
             float pointer_y = Input.GetAxis("Mouse Y");
-            if (Input.touchCount > 0)
+            if (Input.touchCount == 1)
             {
-                velocityX += xSpeed * Input.touches[0].deltaPosition.x * distance * 0.02f;
-                velocityY += ySpeed * Input.touches[0].deltaPosition.y * 0.02f;
+                velocityX += xSpeed * Input.touches[0].deltaPosition.x * (distance * 0.02f) * (Camera.main.fieldOfView / 120);
+                velocityY += ySpeed * Input.touches[0].deltaPosition.y * ((distance / 40) * 0.02f) * (Camera.main.fieldOfView / 120);
             }
 
             rotationYAxis += velocityX;
@@ -71,11 +71,19 @@ public class CameraController : MonoBehaviour {
             
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + target.position;
-            
+            if (Camera.main.fieldOfView < 18)
+            {
+                smoothTime = 4.0f;
+            }
+            else
+            {
+                smoothTime = 2.0f;
+            }
+
             transform.rotation = rotation;
-                transform.position = position;
-                velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * smoothTime);
-                velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * smoothTime);
+            transform.position = position;
+            velocityX = Mathf.Lerp(velocityX, 0, Time.deltaTime * smoothTime);
+            velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * smoothTime);
                 
             
         }

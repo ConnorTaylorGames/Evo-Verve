@@ -15,6 +15,8 @@ namespace LibNoise
         private static readonly Gradient _rgb;
         private static readonly Gradient _rgba;
         private static readonly Gradient _terrain;
+        private static readonly Gradient _terrain2;
+
 
         #endregion
 
@@ -65,6 +67,15 @@ namespace LibNoise
                 new GradientColorKey(Color.white, 1)
             };
 
+            var terrain2ColorKeys = new List<GradientColorKey>
+            {
+                new GradientColorKey(new Color(0, 0, 0.5f), 0),
+                new GradientColorKey(new Color(0.125f, 0.25f, 0.5f), 0.1f),
+                new GradientColorKey(new Color(0.25f, 0.375f, 0.75f), 0.2f),
+                new GradientColorKey(new Color(0, 0.75f, 0), 0.3f),
+                new GradientColorKey(Color.white, 0.98f)
+            };
+
             // Generic gradient alpha keys
             var alphaKeys = new List<GradientAlphaKey> {new GradientAlphaKey(1, 0), new GradientAlphaKey(1, 1)};
 
@@ -81,6 +92,9 @@ namespace LibNoise
 
             _terrain = new Gradient();
             _terrain.SetKeys(terrainColorKeys.ToArray(), alphaKeys.ToArray());
+
+            _terrain2 = new Gradient();
+            _terrain2.SetKeys(terrain2ColorKeys.ToArray(), alphaKeys.ToArray());
         }
 
         #endregion
@@ -126,6 +140,12 @@ namespace LibNoise
         {
             get { return _terrain; }
         }
+
+        public static Gradient Terrain2
+        {
+            get { return _terrain2; }
+        }
+
 
         #endregion
     }
