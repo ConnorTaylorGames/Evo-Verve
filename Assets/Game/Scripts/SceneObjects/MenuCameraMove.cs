@@ -14,7 +14,7 @@ public class MenuCameraMove : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Vector3 PlanetPoint = new Vector3(planet.transform.position.x, planet.transform.position.y + 5, planet.transform.position.z);
+        Vector3 PlanetPoint = new Vector3(planet.transform.position.x, planet.transform.position.y + 20, planet.transform.position.z);
         if (planet)
         {
             transform.RotateAround(planet.transform.position, Vector3.up, 1 * Time.deltaTime);

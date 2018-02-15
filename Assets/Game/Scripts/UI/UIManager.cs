@@ -16,9 +16,11 @@ namespace EvoVerve.Ui
         protected GameObject creditManager;
         public Button ExitScrollup;
         public Image quitBG;
+        public GameObject shop;
 
         private bool menuOpened;
         private bool quitMenuOpened;
+        private bool isShopActivated;
 
         private Animator menuSlideUp;
         private Animator quitCheck;
@@ -29,6 +31,7 @@ namespace EvoVerve.Ui
         {
             creditManager = GameObject.Find("CreditManager");
             menuOpened = false;
+            isShopActivated = false;
         }
 
 
@@ -55,6 +58,23 @@ namespace EvoVerve.Ui
 
         }
 
+        public void PlayShopOpen()
+        {
+            if (shop)
+            {
+                if (isShopActivated)
+                {
+                    shop.SetActive(false);
+                    isShopActivated = false;
+                }
+                else
+                {
+                    shop.SetActive(true);
+                    isShopActivated = true;
+                }
+            }
+            
+        }
 
         void UpdateCreditDisplay()
         {

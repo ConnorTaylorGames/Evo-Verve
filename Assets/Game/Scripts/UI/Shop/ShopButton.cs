@@ -32,6 +32,7 @@ public class ShopButton : MonoBehaviour {
     public void SetName(string myName)
     {
         ObjectName.text = myName;
+        gameObject.name = myName + "_ShopItem";
     }
 
     public void SetPrice(int myPrice)

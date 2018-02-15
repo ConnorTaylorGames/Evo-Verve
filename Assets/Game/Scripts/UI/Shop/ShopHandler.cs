@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ShopHandler : MonoBehaviour
 {
-    private List<ShopItem> shopInventory;
-
+    //private List<ShopItem2> shopInventory;
+    public ShopItem[] shopItems = new ShopItem[0];
+    [Space(20)]
     [SerializeField]
     private GameObject buttonTemplate;
 
@@ -16,39 +19,49 @@ public class ShopHandler : MonoBehaviour
     [SerializeField]
     private Sprite iconSprite;
 
-
     private void Start()
     {
-        shopInventory = new List<ShopItem>();
-
-        for (int i = 0; i < 100; i++)
-        {
-            ShopItem newItem = new ShopItem();
-            newItem.iconSprite = iconSprite;
-
-            shopInventory.Add(newItem);
-        }
-
         GenerateShop();
     }
 
     private void GenerateShop()
     {
-        foreach (ShopItem item in shopInventory)
+        for (int i = 0; i < shopItems.Length; i++)
         {
             GameObject newButton = Instantiate(buttonTemplate) as GameObject;
             newButton.SetActive(true);
 
-            newButton.GetComponent<ShopButton>().SetIcon(item.iconSprite);
+            ShopButton shopButton = newButton.GetComponent<ShopButton>();
+            shopButton.SetIcon(shopItems[i].itemIcon);
+            shopButton.SetName(shopItems[i].itemName);
+            shopButton.SetPrice(shopItems[i].itemPrice);
+
             newButton.transform.SetParent(buttonTemplate.transform.parent, false);
         }
+        
     }
 
-    public class ShopItem
+    public int GetNumberOfItems()
     {
-        public Sprite iconSprite;
-        public string name;
-        public int price;
-        private string prefabPath;
+        int i = 0;
+        DirectoryInfo d = new DirectoryInfo(Application.dataPath + "/Game/Resources/ShopItems/");
+        // Add file sizes.
+        if (d != null)
+        {
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
+                if (fi.Extension.Contains("asset") && !fi.Extension.Contains("meta"))
+                {
+                    i++;
+                }
+            }
+        }
+        return i;
+    }
+
+    public void PopulateShopArray()
+    {
+        shopItems = Resources.LoadAll<ShopItem>("ShopItems");
     }
 }

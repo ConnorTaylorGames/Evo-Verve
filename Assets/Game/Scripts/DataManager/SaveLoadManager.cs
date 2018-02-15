@@ -8,18 +8,12 @@ using EvoVerve.Credits;
 public class SaveLoadManager
 {
 
-    //Read and write data to binary files
-    public static void SavePlanet(GenerateCubeSphere planet)
-    {
-
-    }
-
-    public static void SaveData(CreditManager creditManager, GenerateCubeSphere generateCubeSphere)
+    public static void SaveData(CreditManager creditManager)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath + "/PlayerData.dat", FileMode.Create);
 
-        PlayerData dataFile = new PlayerData(creditManager, generateCubeSphere);
+        PlayerData dataFile = new PlayerData(creditManager);
 
         bf.Serialize(stream, dataFile);
         stream.Close();
@@ -60,10 +54,9 @@ public class PlayerData
 {
     public int[] data;
 
-    public PlayerData(CreditManager creditManager, GenerateCubeSphere generateCubeSphere)
+    public PlayerData(CreditManager creditManager)
     {
-        data = new int[2];
+        data = new int[1];
         data[0] = creditManager.Credits;
-        data[1] = generateCubeSphere.Seed;
     }
 }
