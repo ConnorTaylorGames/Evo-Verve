@@ -10,5 +10,10 @@ public class ShopItem : ScriptableObject
     public string itemName;
     public GameObject itemPrefab;
     public int creditsPerSecond;
+    public int lifeSpan;
+
+    public ObjectType objectType;
+    public BiomeType biomeType;
 
 }
+

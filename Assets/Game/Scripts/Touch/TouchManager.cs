@@ -15,6 +15,7 @@ namespace EvoVerve.Controls
         // Update is called once per frame
         void Update()
         {
+            /*
             if (Input.GetMouseButtonDown(0))
             {
                 if (Tapped != null)
@@ -22,6 +23,7 @@ namespace EvoVerve.Controls
                     Tapped();
                 }
             }
+            
             //Check if tap
             if (Input.touchCount == 1)
             {
@@ -45,6 +47,7 @@ namespace EvoVerve.Controls
             {
                 touching = false;
             }
+            */
 
         }
     }

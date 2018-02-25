@@ -15,4 +15,7 @@ MonoBehaviour:
   itemPrice: 100
   itemName: Oak Tree
   itemPrefab: {fileID: 1196783305686604, guid: f5fdbb22ad5e8e84cb3ae99fbe381a14, type: 2}
-  creditsPerSecond: 0
+  creditsPerSecond: 1
+  lifeSpan: 1
+  objectType: 0
+  biomeType: 3

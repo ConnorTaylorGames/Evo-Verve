@@ -170,7 +170,7 @@ public static class TextureGenerator
 
 
 
-
+    /*
     public static Texture2D GetBiomeMapTexture(int width, int height, Tile[,] tiles, float coldest, float colder, float cold)
     {
         var texture = new Texture2D(width, height);
@@ -257,6 +257,7 @@ public static class TextureGenerator
         texture.Apply();
         return texture;
     }
+    */
 
 }
 

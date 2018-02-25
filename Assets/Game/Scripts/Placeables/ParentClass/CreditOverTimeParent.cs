@@ -11,7 +11,10 @@ public class CreditOverTimeParent : MonoBehaviour
     public int creditsPerSecond;
     public float lifeSpan;
 
-    private void OnEnable()
+    public BiomeType biome;
+    public ObjectType type;
+
+    public void Init()
     {
         StartCoroutine(IncrementOverTime());
         wait = new WaitForSeconds(1.0f);
@@ -20,7 +23,7 @@ public class CreditOverTimeParent : MonoBehaviour
 
     private IEnumerator IncrementOverTime()
     {
-        while (lifeSpan > 0.1)
+        while (lifeSpan > 0.0)
         {
             IncreaseCredits(creditsPerSecond);
             DoPulse();

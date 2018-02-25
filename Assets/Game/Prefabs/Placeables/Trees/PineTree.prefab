@@ -35,7 +35,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1313704437009688}
-  m_LocalRotation: {x: -0.6731698, y: -0, z: -0, w: 0.739488}
+  m_LocalRotation: {x: -0.62667906, y: 0, z: -0.100733556, w: 0.77273935}
   m_LocalPosition: {x: 8.42, y: 5.37, z: 8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -94,4 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsPerSecond: 1
-  lifeSpan: 10
+  lifeSpan: 1
+  biome: 2
+  type: 0

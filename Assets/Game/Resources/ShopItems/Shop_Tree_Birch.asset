@@ -11,8 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0853d72218dd7fa4d8851bc417d10d23, type: 3}
   m_Name: Shop_Tree_Birch
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: d1a1ff926cb53b74d92a84aac17df1f3, type: 3}
+  itemIcon: {fileID: 21300000, guid: 81dea77d0d1acec4b87e68bf07f606a4, type: 3}
   itemPrice: 175
   itemName: Birch Tree
-  itemPrefab: {fileID: 0}
-  creditsPerSecond: 5
+  itemPrefab: {fileID: 1676264618782034, guid: 2ede9c770dddc0a4bba6b5b488885ce1, type: 2}
+  creditsPerSecond: 1
+  lifeSpan: 1
+  objectType: 0
+  biomeType: 0

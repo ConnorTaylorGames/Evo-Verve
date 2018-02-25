@@ -16,7 +16,7 @@ namespace EvoVerve.Ui
         protected GameObject creditManager;
         public Button ExitScrollup;
         public Image quitBG;
-        public GameObject shop;
+        public Image shop;
 
         private bool menuOpened;
         private bool quitMenuOpened;
@@ -24,6 +24,7 @@ namespace EvoVerve.Ui
 
         private Animator menuSlideUp;
         private Animator quitCheck;
+        private Animator shopAnim;
 
 
         // Use this for initialization
@@ -62,15 +63,18 @@ namespace EvoVerve.Ui
         {
             if (shop)
             {
-                if (isShopActivated)
+                shopAnim = shop.GetComponent<Animator>();
+
+                if (!isShopActivated)
                 {
-                    shop.SetActive(false);
-                    isShopActivated = false;
+                    shopAnim.Play("ShopActivate");
+                    CloseAllOpenedUI();
+                    isShopActivated = true;
                 }
                 else
                 {
-                    shop.SetActive(true);
-                    isShopActivated = true;
+                    shopAnim.Play("ShopActivateReverse");
+                    isShopActivated = false;
                 }
             }
             
@@ -103,7 +107,9 @@ namespace EvoVerve.Ui
                 if (!menuOpened)
                 {
                     menuSlideUp.Play("MenuSlideUp");
+                    CloseAllOpenedUI();
                     menuOpened = true;
+
                 }
                 else
                 {
@@ -128,8 +134,11 @@ namespace EvoVerve.Ui
 
                 if (!quitMenuOpened)
                 {
+
                     quitCheck.Play("QuitCheckAnim");
+                    CloseAllOpenedUI();
                     quitMenuOpened = true;
+
                 }
                 else
                 {
@@ -153,6 +162,28 @@ namespace EvoVerve.Ui
                 quitCheck = quitBG.GetComponent<Animator>();
                 quitCheck.Play("QuitCheckAnimReverse");
                 quitMenuOpened = false;
+            }
+        }
+
+
+        private void CloseAllOpenedUI()
+        {
+            if (quitMenuOpened)
+            {
+                quitCheck.Play("QuitCheckAnimReverse");
+                quitMenuOpened = false;
+            }
+
+            if (menuOpened)
+            {
+                menuSlideUp.Play("MenuSlideDown");
+                menuOpened = false;
+            }
+
+            if (isShopActivated)
+            {
+                shopAnim.Play("ShopActivateReverse");
+                isShopActivated = false;
             }
         }
     }

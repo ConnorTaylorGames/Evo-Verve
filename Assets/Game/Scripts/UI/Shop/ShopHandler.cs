@@ -4,20 +4,32 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+using EvoVerve.Credits;
+
 
 public class ShopHandler : MonoBehaviour
 {
-    //private List<ShopItem2> shopInventory;
+    public delegate void ShopItemSelected(bool hasItem);
+    public static event ShopItemSelected CheckItemSelected;
+
     public ShopItem[] shopItems = new ShopItem[0];
     [Space(20)]
     [SerializeField]
     private GameObject buttonTemplate;
+
+    public GameObject SelectedItemPreview;
+    public GameObject creditManager;
 
     [SerializeField]
     private GridLayoutGroup gridGroup;
 
     [SerializeField]
     private Sprite iconSprite;
+
+
+    [SerializeField]
+    private GameObject selectedItem;
+    public GameObject SelectedItem { get { return selectedItem; } set { selectedItem = value; } }
 
     private void Start()
     {
@@ -35,7 +47,10 @@ public class ShopHandler : MonoBehaviour
             shopButton.SetIcon(shopItems[i].itemIcon);
             shopButton.SetName(shopItems[i].itemName);
             shopButton.SetPrice(shopItems[i].itemPrice);
-
+            shopButton.SetPrefab(shopItems[i].itemPrefab);
+            shopButton.CreditManager = creditManager.GetComponent<CreditManager>();
+            shopButton.ShopHandler = this;
+            shopButton.Item = shopItems[i];
             newButton.transform.SetParent(buttonTemplate.transform.parent, false);
         }
         
@@ -63,5 +78,39 @@ public class ShopHandler : MonoBehaviour
     public void PopulateShopArray()
     {
         shopItems = Resources.LoadAll<ShopItem>("ShopItems");
+    }
+
+    public void UpdateSelectedItem(ShopButton itemScript)
+    {
+        selectedItem = itemScript.gameObject;
+        Image previewImage = SelectedItemPreview.GetComponent<Image>();
+        previewImage.sprite = itemScript.Item.itemIcon;
+        previewImage.color = Color.white;
+        if (selectedItem != null)
+        {
+            if (CheckItemSelected != null)
+                CheckItemSelected(true);
+        }
+        else
+        {
+            if (CheckItemSelected != null)
+                CheckItemSelected(false);
+        }
+    }
+
+    public void ClearSelectedItem()
+    {
+        selectedItem.GetComponent<Image>().color = Color.white;
+        selectedItem.GetComponent<ShopButton>().Selected = false;
+        selectedItem = null;
+        Image previewImage = SelectedItemPreview.GetComponent<Image>();
+        previewImage.sprite = null;
+        previewImage.color = Color.clear;
+        if (selectedItem == null)
+        {
+            if(CheckItemSelected != null)
+            CheckItemSelected(false);
+        }
+
     }
 }

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI
+  - Desert
+  - Tundra
+  - Greenland
+  - Marshland
+  - PlanetBase
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Landmass
   - 
   - 
   - 

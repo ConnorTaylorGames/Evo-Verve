@@ -2,6 +2,7 @@
 using AccidentalNoise;
 using System.Collections.Generic;
 
+/*
 public class Generator : MonoBehaviour
 {
 
@@ -518,3 +519,4 @@ public class Generator : MonoBehaviour
         return Tiles[MathHelper.Mod(t.X + 1, Width), t.Y];
     }
 }
+*/

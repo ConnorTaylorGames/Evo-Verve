@@ -15,4 +15,7 @@ MonoBehaviour:
   itemPrice: 200
   itemName: Pine Tree
   itemPrefab: {fileID: 1313704437009688, guid: e8ce4ff78e2e5194297a1efc6cd1e168, type: 2}
-  creditsPerSecond: 0
+  creditsPerSecond: 1
+  lifeSpan: 1
+  objectType: 0
+  biomeType: 2

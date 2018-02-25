@@ -10,6 +10,7 @@ namespace EvoVerve.Credits
         private int credits;
         public int Credits { get { return credits; } set { credits = value; } }
 
+        public bool hasEnoughCredits;
         public delegate void UpdateCreditUI();
         public static event UpdateCreditUI UpdateUI;
 
@@ -29,8 +30,28 @@ namespace EvoVerve.Credits
 
         void IncrementCredits(int incremementAmount)
         {
-            credits+= incremementAmount;
+            credits += incremementAmount;
             UpdateUI();
+        }
+
+        public void SpendCredits(int creditAmount)
+        {
+            credits -= creditAmount;
+        }
+
+        public bool HasEnoughCredits(int creditAmount)
+        {
+            if ((credits - creditAmount) > 0)
+            {
+                hasEnoughCredits = true;
+                return true;
+            }
+            else
+            {
+                hasEnoughCredits = false;
+                UpdateUI();
+                return false;
+            }
         }
     }
 }

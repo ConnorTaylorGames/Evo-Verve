@@ -36,6 +36,7 @@ public enum MoistureType
     Dryest = 0
 }
 
+/*
 public enum BiomeType
 {
     Desert,
@@ -49,6 +50,7 @@ public enum BiomeType
     Tundra,
     Ice
 }
+*/
 
 public class Tile
 {

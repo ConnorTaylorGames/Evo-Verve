@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class CameraController : MonoBehaviour {
@@ -28,11 +29,21 @@ public class CameraController : MonoBehaviour {
         {
             float pointer_x = Input.GetAxis("Mouse X");
             float pointer_y = Input.GetAxis("Mouse Y");
-            if (Input.touchCount == 1)
+
+            
+            foreach (Touch touch in Input.touches)
             {
-                velocityX += xSpeed * Input.touches[0].deltaPosition.x * (distance * 0.02f) * (Camera.main.fieldOfView / 120);
-                velocityY += ySpeed * Input.touches[0].deltaPosition.y * ((distance / 40) * 0.02f) * (Camera.main.fieldOfView / 120);
+                int id = touch.fingerId;
+                if (!EventSystem.current.IsPointerOverGameObject(id))
+                {
+                    if (Input.touchCount == 1)
+                    {
+                        velocityX += xSpeed * Input.touches[0].deltaPosition.x * (distance * 0.02f) * (Camera.main.fieldOfView / 120);
+                        velocityY += ySpeed * Input.touches[0].deltaPosition.y * ((distance / 40) * 0.02f) * (Camera.main.fieldOfView / 120);
+                    }
+                }
             }
+            
 
             rotationYAxis += velocityX;
             rotationXAxis -= velocityY;
@@ -43,27 +54,35 @@ public class CameraController : MonoBehaviour {
             
             if (Input.touchCount == 2)
             {
-                // Store both touches.
-                Touch touchZero = Input.GetTouch(0);
-                Touch touchOne = Input.GetTouch(1);
+                foreach (Touch touch in Input.touches)
+                {
 
-                // Find the position in the previous frame of each touch.
-                Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-                Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+                    int id = touch.fingerId;
+                    if (!EventSystem.current.IsPointerOverGameObject(id))
+                    {
+                        // Store both touches.
+                        Touch touchZero = Input.GetTouch(0);
+                        Touch touchOne = Input.GetTouch(1);
 
-                // Find the magnitude of the vector (the distance) between the touches in each frame.
-                float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-                float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+                        // Find the position in the previous frame of each touch.
+                        Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                        Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-                // Find the difference in the distances between each frame.
-                float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+                        // Find the magnitude of the vector (the distance) between the touches in each frame.
+                        float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                        float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-                // Otherwise change the field of view based on the change in distance between the touches.
+                        // Find the difference in the distances between each frame.
+                        float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-                Camera.main.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
+                        // Otherwise change the field of view based on the change in distance between the touches.
 
-                // Clamp the field of view to make sure it's between 0 and 180.
-                Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 16.0f, 60.0f);
+                        Camera.main.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
+
+                        // Clamp the field of view to make sure it's between 0 and 180.
+                        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, 16.0f, 60.0f);
+                    }
+                }
             }
 
          
