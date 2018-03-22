@@ -11,6 +11,8 @@ public class PlacementHandler : MonoBehaviour
     public CreditManager creditManager;
     public Text creditText;
 
+    public delegate void PlacedAction(GameObject item);
+    public static event PlacedAction itemPlaced;
 
 
     [SerializeField]
@@ -59,7 +61,14 @@ public class PlacementHandler : MonoBehaviour
                     //Set location & rotation, then spawn item
                     Quaternion rotation = Quaternion.FromToRotation(transform.up, normal);
                     GameObject go = Instantiate(item, position, rotation);
+                    go.transform.RotateAround(go.transform.position, go.transform.up, Random.Range(0, 360));
+
+                    go.name = go.name.Replace("(Clone)", "").Trim();
                     go.GetComponent<CreditOverTimeParent>().Init();
+                    if (itemPlaced != null)
+                    {
+                        itemPlaced(go);
+                    }
 
                     creditManager.SpendCredits(cost);
                 }

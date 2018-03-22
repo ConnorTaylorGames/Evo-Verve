@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: Shop_Tree_Birch
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 81dea77d0d1acec4b87e68bf07f606a4, type: 3}
-  itemPrice: 175
+  itemPrice: 500
   itemName: Birch Tree
+  itemDescription: The bark on this tree is great for boats....too bad they arent
+    in yet.
   itemPrefab: {fileID: 1676264618782034, guid: 2ede9c770dddc0a4bba6b5b488885ce1, type: 2}
   creditsPerSecond: 1
-  lifeSpan: 1
+  lifeSpan: 5
   objectType: 0
   biomeType: 0

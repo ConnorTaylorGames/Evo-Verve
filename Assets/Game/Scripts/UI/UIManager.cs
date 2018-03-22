@@ -14,13 +14,17 @@ namespace EvoVerve.Ui
 
         public Text creditDisplayText;
         protected GameObject creditManager;
+        public GameObject shopHandler;
         public Button ExitScrollup;
         public Image quitBG;
         public Image shop;
+        public Image meteorImage;
+        public bool meteorSelected;
 
         private bool menuOpened;
         private bool quitMenuOpened;
         private bool isShopActivated;
+  
 
         private Animator menuSlideUp;
         private Animator quitCheck;
@@ -33,6 +37,7 @@ namespace EvoVerve.Ui
             creditManager = GameObject.Find("CreditManager");
             menuOpened = false;
             isShopActivated = false;
+            meteorSelected = false;
         }
 
 
@@ -41,23 +46,17 @@ namespace EvoVerve.Ui
         {
             CreditManager.UpdateUI += UpdateCreditDisplay;
             //ClickerManager.TappedUI += UpdateCreditDisplay;
-            GameManager.Loaded += UpdateCreditDisplay;
+            GameManager.Loaded += LoadInitialCreditsValue;
         }
 
         private void OnDisable()
         {
             CreditManager.UpdateUI -= UpdateCreditDisplay;
             //ClickerManager.TappedUI -= UpdateCreditDisplay;
-            GameManager.Loaded -= UpdateCreditDisplay;
+            GameManager.Loaded -= LoadInitialCreditsValue;
 
         }
 
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public void PlayShopOpen()
         {
@@ -70,15 +69,33 @@ namespace EvoVerve.Ui
                     shopAnim.Play("ShopActivate");
                     CloseAllOpenedUI();
                     isShopActivated = true;
+                    if (shop.GetComponent<ShopHandler>().HasSelectedItem())
+                    {
+                        shop.GetComponent<ShopHandler>().toolTip.SetActive(true);
+                    }
+                    else
+                    {
+                        shop.GetComponent<ShopHandler>().toolTip.SetActive(false);
+                    }
                 }
                 else
                 {
                     shopAnim.Play("ShopActivateReverse");
                     isShopActivated = false;
+                    if (shop.GetComponent<ShopHandler>().toolTip.activeSelf)
+                    {
+                        shop.GetComponent<ShopHandler>().toolTip.SetActive(false);
+                    }
                 }
             }
             
         }
+
+        void LoadInitialCreditsValue(PlayerData data)
+        {
+            creditDisplayText.text = data.credits.ToString();
+        }
+
 
         void UpdateCreditDisplay()
         {
@@ -162,6 +179,23 @@ namespace EvoVerve.Ui
                 quitCheck = quitBG.GetComponent<Animator>();
                 quitCheck.Play("QuitCheckAnimReverse");
                 quitMenuOpened = false;
+            }
+        }
+
+        public void EnableMeteors()
+        {
+            meteorSelected = !meteorSelected;
+            if (meteorSelected)
+            {
+                if (shopHandler.GetComponent<ShopHandler>().HasSelectedItem())
+                {
+                    shopHandler.GetComponent<ShopHandler>().ClearSelectedItem();
+                }
+                meteorImage.color = Color.red;
+            }
+            else
+            {
+                meteorImage.color = Color.white;
             }
         }
 

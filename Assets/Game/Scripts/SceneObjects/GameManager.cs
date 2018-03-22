@@ -6,16 +6,18 @@ public class GameManager : MonoBehaviour
 {
 
 
-    public delegate void LoadAction();
+    public delegate void LoadAction(PlayerData data);
     public static event LoadAction Loaded;
+
+    private PlayerData loadedData;
 
     // Use this for initialization
     void Start ()
     {
-        DataManager.Load();
-        if (Loaded != null)
+        loadedData = DataManager.Load();
+        if (Loaded != null && loadedData != null)
         {
-            Loaded();
+            Loaded(loadedData);
         }
     }
 

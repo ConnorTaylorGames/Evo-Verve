@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -8,55 +9,86 @@ using EvoVerve.Credits;
 public class SaveLoadManager
 {
 
-    public static void SaveData(CreditManager creditManager)
+
+    public static void SaveData()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream stream = new FileStream(Application.persistentDataPath + "/PlayerData.dat", FileMode.Create);
+        FileStream stream = new FileStream(Application.persistentDataPath + "/PlayerData.evoverve", FileMode.Create);
 
-        PlayerData dataFile = new PlayerData(creditManager);
+        PlayerData dataFile = new PlayerData();
 
         bf.Serialize(stream, dataFile);
         stream.Close();
     }
 
-    public static int[] LoadData()
+    public static PlayerData LoadData()
     {
-        if (File.Exists(Application.persistentDataPath + "/PlayerData.dat"))
+        if (File.Exists(Application.persistentDataPath + "/PlayerData.evoverve"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream stream = new FileStream(Application.persistentDataPath + "/PlayerData.dat", FileMode.Open);
+            FileStream stream = new FileStream(Application.persistentDataPath + "/PlayerData.evoverve", FileMode.Open);
 
+           // PlayerData dataFile = bf.Deserialize(stream) as PlayerData;
             PlayerData dataFile = bf.Deserialize(stream) as PlayerData;
-
             stream.Close();
-            return dataFile.data;
+            return dataFile;
         }
         else
         {
             Debug.Log("No File found");
-            int[] errorValue;
-            errorValue = new int[2];
-            for (int i = 0; i < errorValue.Length; i++)
-            {
-                errorValue[i] = 0;
-            }
+            PlayerData errorValue = null;
             return errorValue;
         }
     }
 
 
 
-}
 
+
+}
 
 [Serializable]
 public class PlayerData
 {
-    public int[] data;
+    [SerializeField]
+    public int credits;
 
-    public PlayerData(CreditManager creditManager)
+    public Dictionary<int, string> objectsName = new Dictionary<int, string>();
+    public Dictionary<int, string> objectsType = new Dictionary<int, string>();
+
+    public Dictionary<int, float> objectPositionsX = new Dictionary<int, float>();
+    public Dictionary<int, float> objectPositionsY = new Dictionary<int, float>();
+    public Dictionary<int, float> objectPositionsZ = new Dictionary<int, float>();
+
+    public Dictionary<int, float> objectRotationsX = new Dictionary<int, float>();
+    public Dictionary<int, float> objectRotationsY = new Dictionary<int, float>();
+    public Dictionary<int, float> objectRotationsZ = new Dictionary<int, float>();
+
+    public PlayerData()
     {
-        data = new int[1];
-        data[0] = creditManager.Credits;
+        int key = 0;
+
+        if (CreditManager.instance != null)
+        {
+            credits = CreditManager.instance.Credits;
+        }
+
+        if (ObjectManager.instance != null)
+        {
+            foreach (GameObject item in ObjectManager.instance.ObjectsInWorld)
+            {
+                objectsName.Add(key, item.name);
+                objectsType.Add(key, item.GetComponent<CreditOverTimeParent>().type.ToString());
+                objectPositionsX.Add(key, item.transform.position.x);
+                objectPositionsY.Add(key, item.transform.position.y);
+                objectPositionsZ.Add(key, item.transform.position.z);
+
+                objectRotationsX.Add(key, item.transform.rotation.eulerAngles.x);
+                objectRotationsY.Add(key, item.transform.rotation.eulerAngles.y);
+                objectRotationsZ.Add(key, item.transform.rotation.eulerAngles.z);
+
+                key++;
+            }
+        }
     }
 }

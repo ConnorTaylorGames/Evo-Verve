@@ -47,12 +47,12 @@ public class GenerateCubeSphere : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Loaded += Generate;
+       // GameManager.Loaded += Generate;
     }
 
     private void OnDisable()
     {
-        GameManager.Loaded -= Generate;
+        //GameManager.Loaded -= Generate;
 
     }
 

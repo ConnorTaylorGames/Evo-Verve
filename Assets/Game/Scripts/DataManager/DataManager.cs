@@ -6,28 +6,36 @@ using EvoVerve.Credits;
 public class DataManager : MonoBehaviour
 {
     static CreditManager creditManager;
-    //static GenerateCubeSphere generateCubeSphere;
+    public static DataManager instance = null;
+
+    void Awake()
+    {
+        //Create one instance of object and make persistant
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         if(GameObject.Find("CreditManager").GetComponent<CreditManager>())
             creditManager = GameObject.Find("CreditManager").GetComponent<CreditManager>();
 
-
     }
 
     public static void Save()
     {
-        SaveLoadManager.SaveData(creditManager);
+        SaveLoadManager.SaveData();
     }
 
-    public static void Load()
+    public static PlayerData Load()
     {
-        int[] loadedData = SaveLoadManager.LoadData();
-
-        if (creditManager)
-        {
-            creditManager.Credits = loadedData[0];
-        }
-    
+        return SaveLoadManager.LoadData();
     }
 }

@@ -16,9 +16,10 @@ public class ShopHandler : MonoBehaviour
     [Space(20)]
     [SerializeField]
     private GameObject buttonTemplate;
-
     public GameObject SelectedItemPreview;
     public GameObject creditManager;
+    public GameObject toolTip;
+    private ToolTipHandler toolTipHandler;
 
     [SerializeField]
     private GridLayoutGroup gridGroup;
@@ -53,6 +54,12 @@ public class ShopHandler : MonoBehaviour
             shopButton.Item = shopItems[i];
             newButton.transform.SetParent(buttonTemplate.transform.parent, false);
         }
+
+        if (toolTip != null)
+        {
+            toolTipHandler = toolTip.GetComponent<ToolTipHandler>();
+        }
+
         
     }
 
@@ -88,13 +95,10 @@ public class ShopHandler : MonoBehaviour
         previewImage.color = Color.white;
         if (selectedItem != null)
         {
+            UpdateToolTip(itemScript.Item);
+
             if (CheckItemSelected != null)
                 CheckItemSelected(true);
-        }
-        else
-        {
-            if (CheckItemSelected != null)
-                CheckItemSelected(false);
         }
     }
 
@@ -111,6 +115,28 @@ public class ShopHandler : MonoBehaviour
             if(CheckItemSelected != null)
             CheckItemSelected(false);
         }
+
+        UpdateToolTip(null);
+
+    }
+
+    public bool HasSelectedItem()
+    {
+        if (selectedItem == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private void UpdateToolTip(ShopItem item)
+    {
+
+        toolTip.SetActive(HasSelectedItem());
+        toolTipHandler.PopulateToolTip(item);
 
     }
 }

@@ -8,6 +8,7 @@ public class ShopItem : ScriptableObject
     public Sprite itemIcon;
     public int itemPrice;
     public string itemName;
+    public string itemDescription;
     public GameObject itemPrefab;
     public int creditsPerSecond;
     public int lifeSpan;

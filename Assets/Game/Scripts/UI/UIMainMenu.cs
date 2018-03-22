@@ -16,5 +16,9 @@ public class UIMainMenu : MonoBehaviour {
         Application.Quit();
     }
 
+    public void OpenFeedBack()
+    {
+        Application.OpenURL("https://goo.gl/forms/w45MaKmSlAeGT6s42");
+    }
 
 }
