@@ -134,7 +134,7 @@ public class PlacementHandler : MonoBehaviour
         {
             ElapsedTime += Time.deltaTime;
             lerp += ElapsedTime / TotalTime;
-            text.fontSize = (int)Mathf.Lerp(90, 70, lerp);
+            text.fontSize = (int)Mathf.Lerp(50, 40, lerp);
             text.color = Color.Lerp(colourChange, Color.white, (ElapsedTime / TotalTime));
             yield return null;
         }
