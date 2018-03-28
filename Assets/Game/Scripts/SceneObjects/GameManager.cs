@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 30;
 
         loadedData = DataManager.Load();
         if (Loaded != null && loadedData != null)

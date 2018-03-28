@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Bare Tree
   itemDescription: It's pretty much dead....probably found in the desert
   itemPrefab: {fileID: 1061145753067950, guid: b58458f5f7eb1cb419e9810909a6150b, type: 2}
-  creditsPerSecond: 1
+  creditsPerSecond: 2
   lifeSpan: 5
   objectType: 0
   biomeType: 1

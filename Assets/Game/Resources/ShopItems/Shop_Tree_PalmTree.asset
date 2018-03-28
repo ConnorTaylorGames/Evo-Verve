@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0853d72218dd7fa4d8851bc417d10d23, type: 3}
+  m_Name: Shop_Tree_PalmTree
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: c24d614b9a53f9646abe518290bb317a, type: 3}
+  itemPrice: 600
+  itemName: Palm Tree
+  itemDescription: Often found on an island with coconuts
+  itemPrefab: {fileID: 1455445931201094, guid: 599d5e9b980b93b42aea83bfedd65d79, type: 2}
+  creditsPerSecond: 2
+  lifeSpan: 5
+  objectType: 0
+  biomeType: 1

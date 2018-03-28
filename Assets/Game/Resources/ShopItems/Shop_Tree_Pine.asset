@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Pine Tree
   itemDescription: A pine tree, often found in snow.
   itemPrefab: {fileID: 1313704437009688, guid: e8ce4ff78e2e5194297a1efc6cd1e168, type: 2}
-  creditsPerSecond: 1
+  creditsPerSecond: 2
   lifeSpan: 5
   objectType: 0
   biomeType: 2

@@ -17,7 +17,7 @@ MonoBehaviour:
   itemDescription: The bark on this tree is great for boats....too bad they arent
     in yet.
   itemPrefab: {fileID: 1676264618782034, guid: 2ede9c770dddc0a4bba6b5b488885ce1, type: 2}
-  creditsPerSecond: 1
+  creditsPerSecond: 2
   lifeSpan: 5
   objectType: 0
   biomeType: 0

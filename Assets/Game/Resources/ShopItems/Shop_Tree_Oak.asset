@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Oak Tree
   itemDescription: The tree thats in most games, usually found in greenlands
   itemPrefab: {fileID: 1196783305686604, guid: f5fdbb22ad5e8e84cb3ae99fbe381a14, type: 2}
-  creditsPerSecond: 1
+  creditsPerSecond: 2
   lifeSpan: 5
   objectType: 0
   biomeType: 3

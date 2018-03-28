@@ -7,7 +7,8 @@ public enum ObjectType
     Trees,
     Foliage,
     Rocks,
-    Animals
+    Animals,
+    Minerals
 }
 
 public enum BiomeType

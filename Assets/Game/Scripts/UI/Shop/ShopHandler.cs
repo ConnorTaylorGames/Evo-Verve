@@ -17,6 +17,8 @@ public class ShopHandler : MonoBehaviour
     [SerializeField]
     private GameObject buttonTemplate;
     public GameObject SelectedItemPreview;
+    public GameObject SelectedItemBG;
+    public GameObject SelectedItemCross;
     public GameObject creditManager;
     public GameObject toolTip;
     private ToolTipHandler toolTipHandler;
@@ -60,6 +62,7 @@ public class ShopHandler : MonoBehaviour
             toolTipHandler = toolTip.GetComponent<ToolTipHandler>();
         }
 
+
         
     }
 
@@ -90,6 +93,8 @@ public class ShopHandler : MonoBehaviour
     public void UpdateSelectedItem(ShopButton itemScript)
     {
         selectedItem = itemScript.gameObject;
+        SelectedItemBG.GetComponent<Image>().color = Color.gray + Color.white;
+        SelectedItemCross.GetComponent<Image>().color = Color.red;
         Image previewImage = SelectedItemPreview.GetComponent<Image>();
         previewImage.sprite = itemScript.Item.itemIcon;
         previewImage.color = Color.white;
@@ -105,6 +110,8 @@ public class ShopHandler : MonoBehaviour
     public void ClearSelectedItem()
     {
         selectedItem.GetComponent<Image>().color = Color.white;
+        SelectedItemBG.GetComponent<Image>().color = Color.clear;
+        SelectedItemCross.GetComponent<Image>().color = Color.clear;
         selectedItem.GetComponent<ShopButton>().Selected = false;
         selectedItem = null;
         Image previewImage = SelectedItemPreview.GetComponent<Image>();

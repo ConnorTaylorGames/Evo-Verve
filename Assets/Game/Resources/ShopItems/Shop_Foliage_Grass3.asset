@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Shop_Foliage_Grass3
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 594e36f99e7dbc24f8625bd6f32b080c, type: 3}
-  itemPrice: 120
+  itemPrice: 110
   itemName: Grass 3
   itemDescription: Annoyingly not the good kind of grass...
   itemPrefab: {fileID: 1701705184433386, guid: 3e4c5dfff765d4d4988ebe0d2b6162e0, type: 2}
