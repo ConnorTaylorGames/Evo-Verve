@@ -31,7 +31,22 @@ ModelImporter:
     4300004: BirchTree_LOD1
     4300006: BirchTree_LOD0
     20500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bark
+    second: {fileID: 2100000, guid: e2c86f50955d7f045ab3fb7344a2d465, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves
+    second: {fileID: 2100000, guid: 53c483804eff0ad47921eb052de6b54e, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves2
+    second: {fileID: 2100000, guid: 21d16d5e405b38344b7465b2ad12be13, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

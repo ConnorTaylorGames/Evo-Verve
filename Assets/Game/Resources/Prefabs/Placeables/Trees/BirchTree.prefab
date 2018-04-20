@@ -183,9 +183,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100004, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100000, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
+  - {fileID: 2100000, guid: 3f9df7a7a67cebd4f8dbf27aa26c1fde, type: 2}
+  - {fileID: 2100000, guid: 93c4ea7c44c61964b9a1b063972a69b7, type: 2}
+  - {fileID: 2100000, guid: 21d16d5e405b38344b7465b2ad12be13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,9 +219,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100004, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100000, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
+  - {fileID: 2100000, guid: 3f9df7a7a67cebd4f8dbf27aa26c1fde, type: 2}
+  - {fileID: 2100000, guid: 93c4ea7c44c61964b9a1b063972a69b7, type: 2}
+  - {fileID: 2100000, guid: 21d16d5e405b38344b7465b2ad12be13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -255,9 +255,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100002, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100004, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
+  - {fileID: 2100000, guid: 93c4ea7c44c61964b9a1b063972a69b7, type: 2}
+  - {fileID: 2100000, guid: 3f9df7a7a67cebd4f8dbf27aa26c1fde, type: 2}
+  - {fileID: 2100000, guid: 21d16d5e405b38344b7465b2ad12be13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -291,9 +291,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100002, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
-  - {fileID: 2100004, guid: 6eb476cacea4dba43befd1a3841b789a, type: 3}
+  - {fileID: 2100000, guid: d8fc52b0ed4711c458421dbc623c9cc0, type: 2}
+  - {fileID: 2100000, guid: 9e9c87180f039a74d9f0e87f2da03608, type: 2}
+  - {fileID: 2100000, guid: 21d16d5e405b38344b7465b2ad12be13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSeen: 0
-  creditsPerSecond: 1
-  lifeSpan: 1
+  creditsPerSecond: 2
+  lifeSpan: 5
   biome: 0
   type: 0
 --- !u!205 &205030569932290268

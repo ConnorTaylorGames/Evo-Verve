@@ -648,7 +648,6 @@ GameObject:
   - component: {fileID: 392614396}
   - component: {fileID: 392614397}
   - component: {fileID: 392614398}
-  - component: {fileID: 392614399}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -694,7 +693,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 110
+  far clip plane: 90
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -719,13 +718,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392614390}
-  m_LocalRotation: {x: 0.009581722, y: -0.115689635, z: 0.017517451, w: 0.9930848}
-  m_LocalPosition: {x: 19.2, y: 3.5, z: -90.8}
+  m_LocalRotation: {x: -0.4268617, y: -0.111655064, z: -0.03498711, w: 0.8967152}
+  m_LocalPosition: {x: 6.92, y: 1.47, z: -45.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 1.3230001, y: -13.268001, z: 1.8670001}
+  m_LocalEulerAnglesHint: {x: -50.657, y: -15.590001, z: 2.9450002}
 --- !u!114 &392614396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,18 +766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: e491ad16862335143bcefe16828bb837, type: 2}
---- !u!114 &392614399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 392614390}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b45d7cc76bdad47bb6851aae8bdd04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placedItems: []
 --- !u!1 &396061919
 GameObject:
   m_ObjectHideFlags: 0
