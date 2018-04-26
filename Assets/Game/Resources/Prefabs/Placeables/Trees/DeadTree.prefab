@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4485944207622958}
   - component: {fileID: 205664212615558506}
   - component: {fileID: 114313089102958556}
+  - component: {fileID: 64253373752494796}
   m_Layer: 9
   m_Name: DeadTree
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1061145753067950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14040238, y: -0.82299674, z: -44.774254}
+  m_LocalPosition: {x: 4.488644, y: 1.3664639, z: -43.09654}
   m_LocalScale: {x: 0.4878933, y: 0.4878933, z: 0.4878933}
   m_Children:
   - {fileID: 4601845257955892}
@@ -341,6 +342,20 @@ MeshCollider:
   m_GameObject: {fileID: 1975110731677222}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300006, guid: 19a6226b60ab8d94b8b6e4af601e045f, type: 3}
+--- !u!64 &64253373752494796
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061145753067950}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
@@ -355,7 +370,7 @@ MeshCollider:
   m_GameObject: {fileID: 1796399402536778}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -369,7 +384,7 @@ MeshCollider:
   m_GameObject: {fileID: 1759766890032198}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -383,7 +398,7 @@ MeshCollider:
   m_GameObject: {fileID: 1405140123285528}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14

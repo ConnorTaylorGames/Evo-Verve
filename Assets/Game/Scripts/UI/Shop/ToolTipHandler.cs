@@ -16,6 +16,7 @@ public class ToolTipHandler : MonoBehaviour
     public Text tpItemBiome;
     public Text tpItemCPS;
     public Text tpItemLife;
+    public Image biomeColourImage;
 
 
     public void PopulateToolTip(ShopItem itemSelected)
@@ -27,6 +28,7 @@ public class ToolTipHandler : MonoBehaviour
             tpItemBiome.text = "Biome: \n" + itemSelected.biomeType.ToString();
             tpItemCPS.text = "Credits per second: " + itemSelected.creditsPerSecond.ToString();
             tpItemLife.text = "Lifespan: " + itemSelected.lifeSpan.ToString();
+            SetBiomeColour(itemSelected.biomeType);
         }
         else
         {
@@ -35,7 +37,37 @@ public class ToolTipHandler : MonoBehaviour
             tpItemBiome.text = "";
             tpItemCPS.text = "";
             tpItemLife.text = "";
+            biomeColourImage.color = Color.clear;
+
         }
+    }
+    private void SetBiomeColour(BiomeType biomeType)
+    {
+        Color biomeColor = Color.clear;
+        switch (biomeType)
+        {
+            case BiomeType.All:
+                biomeColor = Color.clear;
+                break;
+
+            case BiomeType.Desert:
+                biomeColor = new Color32(214, 155, 0, 255);
+                break;
+
+            case BiomeType.Greenland:
+                biomeColor = new Color32(70, 255, 36, 255);
+                break;
+
+            case BiomeType.Marshland:
+                biomeColor = new Color32(27, 69, 33, 255);
+                break;
+
+            case BiomeType.Tundra:
+                biomeColor = Color.white;
+                break;
+        }
+
+        biomeColourImage.color = biomeColor;
     }
 
 }

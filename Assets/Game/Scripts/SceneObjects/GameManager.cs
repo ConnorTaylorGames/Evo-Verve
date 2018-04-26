@@ -15,12 +15,9 @@ public class GameManager : MonoBehaviour
     void Start ()
     {
         Application.targetFrameRate = 30;
-
-        loadedData = DataManager.Load();
-        if (Loaded != null && loadedData != null)
-        {
-            Loaded(loadedData);
-        }
+        LoadData();
+        
+        
     }
 
     private void OnApplicationFocus(bool focus)
@@ -29,7 +26,37 @@ public class GameManager : MonoBehaviour
         {
             DataManager.Save();
         }
+        else
+        {
+           LoadData();
+        }
     }
+
+    private void LoadData()
+    {
+        loadedData = DataManager.Load();
+        if (Loaded != null && loadedData != null)
+        {
+            Loaded(loadedData);
+        }
+    }
+
+    
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (pauseStatus)
+            {
+                DataManager.Save();
+            }
+            else
+            {
+                LoadData();
+            }
+        }
+    }
+    
 
     private void OnApplicationQuit()
     {

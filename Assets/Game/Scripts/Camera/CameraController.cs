@@ -27,10 +27,7 @@ public class CameraController : MonoBehaviour {
     {
         if (target)
         {
-            float pointer_x = Input.GetAxis("Mouse X");
-            float pointer_y = Input.GetAxis("Mouse Y");
 
-            
             foreach (Touch touch in Input.touches)
             {
                 int id = touch.fingerId;

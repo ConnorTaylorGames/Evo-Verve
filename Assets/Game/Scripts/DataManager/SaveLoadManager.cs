@@ -52,9 +52,13 @@ public class PlayerData
 {
     [SerializeField]
     public int credits;
+    public int tutorialSegment;
+
+    public double logOffTime;
 
     public Dictionary<int, string> objectsName = new Dictionary<int, string>();
     public Dictionary<int, string> objectsType = new Dictionary<int, string>();
+    public Dictionary<int, int> objectsCPS = new Dictionary<int, int>();
 
     public Dictionary<int, float> objectPositionsX = new Dictionary<int, float>();
     public Dictionary<int, float> objectPositionsY = new Dictionary<int, float>();
@@ -73,12 +77,23 @@ public class PlayerData
             credits = CreditManager.instance.Credits;
         }
 
+        if(TimeManager.instance != null)
+        {
+            logOffTime = TimeManager.GetLocalTime();
+        }
+
+        if (TutorialManager.instance != null)
+        {
+            tutorialSegment = TutorialManager.instance.tutorialPhase;
+        }
+
         if (ObjectManager.instance != null)
         {
             foreach (GameObject item in ObjectManager.instance.ObjectsInWorld)
             {
                 objectsName.Add(key, item.name);
                 objectsType.Add(key, item.GetComponent<CreditOverTimeParent>().type.ToString());
+                objectsCPS.Add(key, item.GetComponent<CreditOverTimeParent>().creditsPerSecond);
                 objectPositionsX.Add(key, item.transform.position.x);
                 objectPositionsY.Add(key, item.transform.position.y);
                 objectPositionsZ.Add(key, item.transform.position.z);

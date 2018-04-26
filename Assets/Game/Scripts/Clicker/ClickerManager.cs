@@ -36,7 +36,7 @@ namespace EvoVerve.Clicker
 
         void Update()
         {
-            if (Application.platform == RuntimePlatform.WindowsEditor)
+            if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor)
             {
                 //*********************************************
                 //Position the meteor selector
@@ -59,7 +59,7 @@ namespace EvoVerve.Clicker
                                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                                 RaycastHit hit;
                                 // Create a particle if hit
-                                if (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Landmass")))
+                                if (Physics.Raycast(ray, out hit, 200))
                                 {
 
                                     Vector3 p = hit.point;
@@ -171,13 +171,12 @@ namespace EvoVerve.Clicker
                                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                                     RaycastHit hit;
                                     // Create a particle if hit
-                                    if (Physics.Raycast(ray, out hit, 200, LayerMask.GetMask("Landmass")))
+                                    if (Physics.Raycast(ray, out hit, 200))
                                     {
 
                                         Vector3 p = hit.point;
                                         Vector3 n = hit.normal;
                                         selector.PositionSelector(p, n);
-
                                     }
                                 }
                             }

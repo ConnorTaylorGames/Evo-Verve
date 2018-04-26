@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CreditOverTimeParent : MonoBehaviour
 {
-    public delegate void IncrementAction(int creditIncreaseAmount);
-    public static event IncrementAction IncrementCredits;
-
     [SerializeField]
     private bool isSeen;
     public int creditsPerSecond;
@@ -19,24 +16,7 @@ public class CreditOverTimeParent : MonoBehaviour
 
     public void Init()
     {
-        InvokeRepeating("IncrementOverTime", 0, 1);
-
         objectRenderer = gameObject.GetComponent<Renderer>();
-    }
-
-    private void IncrementOverTime()
-    {
-        IncreaseCredits(creditsPerSecond);
-    }
-
-
-
-    protected void IncreaseCredits(int creditIncrement)
-    {
-        if (IncrementCredits != null)
-        {
-            IncrementCredits(creditIncrement);
-        }
     }
 
     public void DoPulse()

@@ -61,6 +61,7 @@ public class PlacementHandler : MonoBehaviour
                     //Set location & rotation, then spawn item
                     Quaternion rotation = Quaternion.FromToRotation(transform.up, normal);
                     GameObject go = Instantiate(item, position, rotation);
+                    go.transform.parent = GameObject.Find("Objects").transform.Find(itemButton.Item.objectType.ToString());
                     go.transform.RotateAround(go.transform.position, go.transform.up, Random.Range(0, 360));
 
                     go.name = go.name.Replace("(Clone)", "").Trim();

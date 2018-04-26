@@ -13,13 +13,11 @@ public class OcclusionCheck : MonoBehaviour
     }
     private void OnEnable()
     {
-        PlacementHandler.itemPlaced += UpdateList;
         placedItems = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        PlacementHandler.itemPlaced -= UpdateList;
     }
 
     private void UpdateList(GameObject item)

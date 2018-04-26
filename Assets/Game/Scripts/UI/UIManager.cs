@@ -19,6 +19,7 @@ namespace EvoVerve.Ui
         public Image quitBG;
         public Image shop;
         public Image meteorImage;
+        public Text cpsDisplayText;
         public bool meteorSelected;
 
         private bool menuOpened;
@@ -45,16 +46,22 @@ namespace EvoVerve.Ui
         private void OnEnable()
         {
             CreditManager.UpdateUI += UpdateCreditDisplay;
-            //ClickerManager.TappedUI += UpdateCreditDisplay;
             GameManager.Loaded += LoadInitialCreditsValue;
+            CPSManager.cpsAction += UpdateCPS;
+
         }
 
         private void OnDisable()
         {
             CreditManager.UpdateUI -= UpdateCreditDisplay;
-            //ClickerManager.TappedUI -= UpdateCreditDisplay;
             GameManager.Loaded -= LoadInitialCreditsValue;
+            CPSManager.cpsAction -= UpdateCPS;
 
+        }
+
+        private void UpdateCPS()
+        {
+            cpsDisplayText.text = "+" +  CPSManager.GetCPS().ToString();
         }
 
 

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSeen: 0
-  creditsPerSecond: 0
-  lifeSpan: 0
+  creditsPerSecond: 1
+  lifeSpan: 1
   biome: 0
   type: 2

@@ -40,6 +40,7 @@ public class UIMainMenu : MonoBehaviour {
         if (File.Exists(Application.persistentDataPath + "/PlayerData.evoverve"))
         {
             File.Delete(Application.persistentDataPath + "/PlayerData.evoverve");
+            CPSManager.ResetCPS();
             CancelDelete();
         }
         else
